@@ -1,7 +1,5 @@
-<details> 
-<summary>📦 NestJS Core Concepts</summary>
-<details> 
-<summary>📦 NestJS Modules</summary>
+# NestJS — Core Concept
+## 📦 NestJS Modules
 
 ### 🧠 What is a Module?
 
@@ -68,7 +66,3 @@ export class AppModule {}
 | `AppModule`    | Root module — main entry point           |
 | Feature Module | A logical group of related functionality |
 | `@Module()`    | Decorator that defines a module          |
-
-</details> 
-
-</details> 
