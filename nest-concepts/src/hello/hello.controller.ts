@@ -1,9 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { HelloService } from './hello.service';
 
 //incoming request and returning responses
 // get , post,put,delete
 //localhost:3000/hello
+//http://localhost:3000/hello/user/gazi
 @Controller('hello')
 export class HelloController {
     //dependency injection
@@ -12,5 +13,10 @@ export class HelloController {
     @Get()
     getHello(): string {
         return this.helloService.getHello()
+    }
+
+    @Get('user/:name')
+    getHelloWithName(@Param('name') name: string): string {
+        return this.helloService.getHelloWithName(name)
     }
 }
