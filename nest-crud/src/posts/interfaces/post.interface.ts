@@ -4,5 +4,5 @@ export interface Post {
     content: string;
     authorName: string;
     createdAt: Date;
-    updateAt: Date;
+    updateAt?: Date;
 }
