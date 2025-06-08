@@ -21,6 +21,6 @@ export class PostsService {
         if (!singlePost) {
             throw new NotFoundException(`Post with ID ${id} is not found`)
         }
-        return singlePost
+        return singlePost;
     }
 }
