@@ -6,6 +6,13 @@
 
 A simple RESTful API built with **NestJS**, **Prisma**, and **Neon PostgreSQL** to manage users and posts.
 
+## 🚀 Try the API with Postman
+
+You can explore and test all API endpoints using this Postman collection:
+
+👉 [Nest API Postman Collection](https://www.postman.com/gazi2050/public-collection/collection/cp1firw/nest-api)
+
+
 ## 🔧 Tech Stack
 
 - **Framework**: [NestJS](https://nestjs.com/)
@@ -47,7 +54,7 @@ A simple RESTful API built with **NestJS**, **Prisma**, and **Neon PostgreSQL** 
    Create a `.env` file:
 
    ```
-   DATABASE_URL="your_neon_connection_string"
+   DATABASE_URL="your_db_connection_string"
    ```
 
 4. **Run Prisma**
@@ -68,6 +75,7 @@ nest-api/
 ├─] .env (ignored)
 ├── .gitignore
 ├── .prettierrc
+├─] .vercel/ (ignored)
 ├─] dist/ (ignored)
 ├── eslint.config.mjs
 ├── generated/
@@ -94,7 +102,9 @@ nest-api/
 │   │   └── posts.service.ts
 │   ├── prisma.service.ts
 │   ├── schemas/
-│   │   └── create-user.schema.ts
+│   │   ├── create-post.schema.ts
+│   │   ├── create-user.schema.ts
+│   │   └── update-post.schema.ts
 │   ├── users/
 │   │   ├── users.controller.spec.ts
 │   │   ├── users.controller.ts
@@ -107,5 +117,6 @@ nest-api/
 │   ├── app.e2e-spec.ts
 │   └── jest-e2e.json
 ├── tsconfig.build.json
-└── tsconfig.json
+├── tsconfig.json
+└── vercel.json
 ```

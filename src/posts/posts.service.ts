@@ -1,5 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { Prisma } from 'generated/prisma';
 import { PrismaService } from 'src/prisma.service';
+import { CreatePostDto } from 'src/schemas/create-post.schema';
+import { UpdatePostDto } from 'src/schemas/update-post.schema';
 
 @Injectable()
 export class PostsService {
@@ -24,4 +27,42 @@ export class PostsService {
         return post;
     }
 
+    async create(data: CreatePostDto) {
+        return this.prisma.post.create({
+            data,
+        });
+    }
+
+    async update(id: number, data: UpdatePostDto) {
+        try {
+            return await this.prisma.post.update({
+                where: { id },
+                data,
+            });
+        } catch (error: unknown) {
+            if (
+                error instanceof Prisma.PrismaClientKnownRequestError &&
+                error.code === 'P2025'
+            ) {
+                throw new NotFoundException(`Post with ID ${id} not found`);
+            }
+            throw error;
+        }
+    }
+
+    async delete(id: number) {
+        try {
+            return await this.prisma.post.delete({
+                where: { id },
+            });
+        } catch (error) {
+            if (
+                error instanceof Prisma.PrismaClientKnownRequestError &&
+                error.code === 'P2025'
+            ) {
+                throw new NotFoundException(`Post with ID ${id} not found`);
+            }
+            throw error;
+        }
+    }
 }
