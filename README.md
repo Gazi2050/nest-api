@@ -62,3 +62,50 @@ A simple RESTful API built with **NestJS**, **Prisma**, and **Neon PostgreSQL** 
    ```bash
    pnpm start:dev
    ```
+## 📁 Project Structure
+```bash
+nest-api/
+├─] .env (ignored)
+├── .gitignore
+├── .prettierrc
+├─] dist/ (ignored)
+├── eslint.config.mjs
+├── generated/
+│   └─] prisma/ (ignored)
+├── nest-cli.json
+├─] node_modules/ (ignored)
+├── package.json
+├── pnpm-lock.yaml
+├── prisma/
+│   ├─] migrations/ (ignored)
+│   └── schema.prisma
+├── README.md
+├── src/
+│   ├── app.controller.spec.ts
+│   ├── app.controller.ts
+│   ├── app.module.ts
+│   ├── app.service.ts
+│   ├── main.ts
+│   ├── posts/
+│   │   ├── posts.controller.spec.ts
+│   │   ├── posts.controller.ts
+│   │   ├── posts.module.ts
+│   │   ├── posts.service.spec.ts
+│   │   └── posts.service.ts
+│   ├── prisma.service.ts
+│   ├── schemas/
+│   │   └── create-user.schema.ts
+│   ├── users/
+│   │   ├── users.controller.spec.ts
+│   │   ├── users.controller.ts
+│   │   ├── users.module.ts
+│   │   ├── users.service.spec.ts
+│   │   └── users.service.ts
+│   └── validator/
+│       └── zod-validation.pipe.ts
+├── test/
+│   ├── app.e2e-spec.ts
+│   └── jest-e2e.json
+├── tsconfig.build.json
+└── tsconfig.json
+```
