@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { ZodValidationPipe } from 'src/validator/zod-validation.pipe';
 import { CreateUserSchema } from 'src/schemas/create-user.schema';
@@ -27,5 +27,10 @@ export class UsersController {
         @Body(new ZodValidationPipe(CreateUserSchema)) body: any
     ) {
         return this.usersService.create(body);
+    }
+
+    @Delete(':id')
+    async deleteUser(@Param('id', ParseIntPipe) id: number) {
+        return this.usersService.delete(id);
     }
 }
