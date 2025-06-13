@@ -1,10 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {
     Injectable,
     NotFoundException,
     BadRequestException,
 } from '@nestjs/common';
+import { Prisma } from 'generated/prisma';
 import { PrismaService } from 'src/prisma.service';
+
 
 @Injectable()
 export class UsersService {
@@ -29,8 +30,11 @@ export class UsersService {
     async create(data: { email: string; password: string }) {
         try {
             return await this.prisma.user.create({ data });
-        } catch (error) {
-            if (error.code === 'P2002') {
+        } catch (error: unknown) {
+            if (
+                error instanceof Prisma.PrismaClientKnownRequestError &&
+                error.code === 'P2002'
+            ) {
                 throw new BadRequestException('Email already exists');
             }
             throw error;
@@ -42,12 +46,14 @@ export class UsersService {
             return await this.prisma.user.delete({
                 where: { id },
             });
-        } catch (error) {
-            if (error.code === 'P2025') {
+        } catch (error: unknown) {
+            if (
+                error instanceof Prisma.PrismaClientKnownRequestError &&
+                error.code === 'P2025'
+            ) {
                 throw new NotFoundException(`User with ID ${id} not found`);
             }
             throw error;
         }
     }
-
 }
